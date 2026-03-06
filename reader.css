@@ -1,3 +1,20 @@
+/* ── OpenDyslexic font ── */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('OpenDyslexic-Regular.otf') format('opentype');
+  font-weight: 300 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('OpenDyslexic-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── Material Design 3 tokens — calm green ── */
 :root {
   --md-sys-color-primary: #4caf7a;
@@ -25,7 +42,7 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: 'Roboto', system-ui, sans-serif;
+  font-family: 'OpenDyslexic', 'Roboto', system-ui, sans-serif;
   background: var(--md-sys-color-surface);
   color: var(--md-sys-color-on-surface);
   user-select: none;
