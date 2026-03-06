@@ -1,0 +1,220 @@
+/* ── Material Design 3 tokens — calm green ── */
+:root {
+  --md-sys-color-primary: #4caf7a;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-surface: #101210;
+  --md-sys-color-surface-container: #171a17;
+  --md-sys-color-surface-container-high: #1e211e;
+  --md-sys-color-on-surface: #dce5dc;
+  --md-sys-color-on-surface-variant: #b5c4b5;
+  --md-sys-color-outline: #7a8a7a;
+  --md-sys-color-primary-container: #c8e6c9;
+  --md-sys-color-secondary: #a5d6a7;
+  --md-shape-corner-full: 9999px;
+  --md-shape-corner-md: 12px;
+}
+
+/* ── Reset & base ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Roboto', system-ui, sans-serif;
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Progress bar ── */
+.progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--md-sys-color-surface-container-high);
+  z-index: 10;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--md-sys-color-primary);
+  transition: width 0.15s ease-out;
+}
+
+/* ── Word area ── */
+.word-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 72px);      /* leave room for controls */
+  padding: 24px 32px 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.word-display {
+  font-size: clamp(1.8rem, 7vw, 3rem);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: 300;
+  min-height: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.1s ease;
+}
+
+.word-display .bold {
+  font-weight: 700;
+}
+
+/* Paused state dims the word slightly */
+.word-area.paused .word-display {
+  opacity: 0.5;
+}
+
+.status-hint {
+  position: absolute;
+  bottom: 16px;
+  font-size: 0.8rem;
+  color: var(--md-sys-color-outline);
+  letter-spacing: 0.04em;
+  transition: opacity 0.25s ease;
+}
+
+.status-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Done / restart overlay ── */
+.word-display .done-msg {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--md-sys-color-on-surface-variant);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.word-display .done-msg .restart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: var(--md-shape-corner-full);
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.2s;
+}
+
+.word-display .done-msg .restart-btn:hover {
+  background: #5cc98a;
+}
+
+/* ── Controls bar ── */
+.controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  background: var(--md-sys-color-surface-container);
+  border-top: 1px solid var(--md-sys-color-surface-container-high);
+}
+
+.speed-label {
+  min-width: 68px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--md-sys-color-secondary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.word-count {
+  min-width: 56px;
+  font-size: 0.75rem;
+  color: var(--md-sys-color-outline);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── Material-styled range slider ── */
+#speedSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 4px;
+  border-radius: var(--md-shape-corner-full);
+  background: var(--md-sys-color-surface-container-high);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Track fill — painted via JS with a linear-gradient */
+#speedSlider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: var(--md-shape-corner-full);
+}
+
+#speedSlider::-moz-range-track {
+  height: 4px;
+  border-radius: var(--md-shape-corner-full);
+  background: transparent;
+}
+
+/* Thumb */
+#speedSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--md-sys-color-primary);
+  border: none;
+  margin-top: -8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+
+#speedSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--md-sys-color-primary);
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+#speedSlider::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 8px rgba(76, 175, 122, 0.15), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+#speedSlider:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 12px rgba(76, 175, 122, 0.2), 0 1px 3px rgba(0, 0, 0, 0.4);
+}

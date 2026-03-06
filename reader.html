@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADRD Reader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="reader.css" />
+</head>
+<body>
+  <!-- Progress bar -->
+  <div class="progress-track">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <!-- Main word display — click anywhere to pause/play -->
+  <div class="word-area" id="wordArea">
+    <div class="word-display" id="wordDisplay"></div>
+    <div class="status-hint" id="statusHint">Click or press Space to start</div>
+  </div>
+
+  <!-- Bottom controls -->
+  <div class="controls">
+    <span class="speed-label" id="speedLabel">500 wpm</span>
+    <input
+      type="range"
+      id="speedSlider"
+      min="200"
+      max="1000"
+      step="10"
+      value="500"
+      aria-label="Reading speed in words per minute"
+    />
+    <span class="word-count" id="wordCount"></span>
+  </div>
+
+  <script src="reader.js"></script>
+</body>
+</html>

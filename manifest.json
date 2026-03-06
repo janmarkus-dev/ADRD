@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "ADRD — RSVP Reader",
+  "version": "1.0.0",
+  "description": "RSVP speed reader with bionic bolding for ADHD readers. Select text, right-click, and read word-by-word at your own pace.",
+  "permissions": ["contextMenus", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}
